@@ -6,7 +6,6 @@ import type {
   AuthResponse,
 } from "@/types/auth.types";
 
-
 export async function register(
   data: RegisterData
 ): Promise<AuthResponse> {
@@ -15,29 +14,29 @@ export async function register(
     `${API}/auth/register`,
     {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify(data),
     }
   );
 
-
-  const result: AuthResponse =
-    await res.json();
-
+  const result = await res.json();
 
   if (!res.ok) {
-    throw new Error(result.message);
+    let message = "Registration failed";
+
+    if (Array.isArray(result) && result.length > 0) {
+      message = result[0].message;
+    } else if (result.message) {
+      message = result.message;
+    }
+
+    throw new Error(message);
   }
 
-
-  return result;
+  return result as AuthResponse;
 }
-
-
 
 export async function login(
   data: LoginData
@@ -47,24 +46,26 @@ export async function login(
     `${API}/auth/login`,
     {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify(data),
     }
   );
 
-
-  const result: AuthResponse =
-    await res.json();
-
+  const result = await res.json();
 
   if (!res.ok) {
-    throw new Error(result.message);
+    let message = "Login failed";
+
+    if (Array.isArray(result) && result.length > 0) {
+      message = result[0].message;
+    } else if (result.message) {
+      message = result.message;
+    }
+
+    throw new Error(message);
   }
 
-
-  return result;
+  return result as AuthResponse;
 }

@@ -285,36 +285,40 @@ export default function LoginForm() {
       {/* Login Button */}
 
 
-      <button
-
-        disabled={loading}
-
-
+     <button
+  disabled={loading}
+  className="
+    w-full
+    rounded-xl
+    bg-[#1E3A5F]
+    py-3
+    font-semibold
+    text-white
+    transition
+    hover:bg-[#152b46]
+    disabled:cursor-not-allowed
+    disabled:opacity-60
+  "
+>
+  {loading ? (
+    <div className="flex items-center justify-center gap-2">
+      <div
         className="
-        w-full
-        rounded-xl
-        bg-[#1E3A5F]
-        py-3
-        font-semibold
-        text-white
-        transition
-        hover:bg-[#152b46]
-        disabled:cursor-not-allowed
-        disabled:opacity-60
+          h-5
+          w-5
+          animate-spin
+          rounded-full
+          border-2
+          border-white
+          border-t-transparent
         "
-
-      >
-
-        {
-          loading
-          ?
-          "Logging in..."
-          :
-          "Login"
-        }
-
-
-      </button>
+      />
+      <span>Logging in...</span>
+    </div>
+  ) : (
+    "Login"
+  )}
+</button>
 
 
 

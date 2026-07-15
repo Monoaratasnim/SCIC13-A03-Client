@@ -171,7 +171,7 @@ items-center
 justify-center
 rounded-xl
 bg-white
-px-7
+px-5
 py-3
 font-semibold
 text-[#1E3A5F]
@@ -194,25 +194,6 @@ h-5
 
 
 
-<Link
-href="/register"
-className="
-rounded-xl
-border
-border-white/50
-px-7
-py-3
-text-center
-font-semibold
-text-white
-transition
-hover:bg-white/10
-"
->
-
-List Your Property
-
-</Link>
 
 
 
