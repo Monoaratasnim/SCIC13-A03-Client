@@ -3,6 +3,8 @@ import { Inter, Poppins } from "next/font/google";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ToastProvider from "@/components/common/ToastProvider";
+import GoogleHandler from "@/components/auth/GoogleHandler";
 
 import "./globals.css";
 
@@ -38,6 +40,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} bg-slate-50 text-slate-900 antialiased`}
       >
+        <ToastProvider />
+        <GoogleHandler />
         <Navbar />
 
         <main className="pt-20 min-h-screen">

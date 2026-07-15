@@ -1,212 +1,10 @@
-// "use client";
-
-// import Link from "next/link";
-// import { usePathname } from "next/navigation";
-// import { Menu, X } from "lucide-react";
-// import { useEffect, useState } from "react";
-
-// const navigation = [
-//   { name: "Home", href: "/" },
-//   { name: "Properties", href: "/properties" },
-//   { name: "About", href: "/about" },
-//   { name: "Contact", href: "/contact" },
-// ];
-
-// export default function Navbar() {
-//   const pathname = usePathname();
-
-//   // Temporary auth state
-//   const isLoggedIn = false;
-
-//   // Mobile menu (Part 2)
-//   const [mobileOpen, setMobileOpen] = useState(false);
-
-//   // Navbar scroll effect
-//   const [scrolled, setScrolled] = useState(false);
-//   // Close mobile menu on route change
-// useEffect(() => {
-//   setMobileOpen(false);
-// }, [pathname]);
-
-// // Close mobile menu with Escape key
-// useEffect(() => {
-//   const handleKeyDown = (event: KeyboardEvent) => {
-//     if (event.key === "Escape") {
-//       setMobileOpen(false);
-//     }
-//   };
-
-//   window.addEventListener("keydown", handleKeyDown);
-
-//   return () => window.removeEventListener("keydown", handleKeyDown);
-// }, []);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 10);
-//     };
-
-//     handleScroll();
-
-//     window.addEventListener("scroll", handleScroll);
-
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   return (
-//     <header
-//       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-//         scrolled
-//           ? "border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-lg"
-//           : "bg-white"
-//       }`}
-//     >
-//       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-//         {/* ================= Logo ================= */}
-
-//         <Link
-//           href="/"
-//           className="flex items-center gap-1 text-2xl font-bold tracking-tight transition-opacity hover:opacity-90"
-//         >
-//           <span className="text-slate-900">Property</span>
-//           <span className="text-blue-600">Nest</span>
-//         </Link>
-
-//         {/* ================= Desktop Navigation ================= */}
-
-//         <div className="hidden items-center rounded-full border border-slate-200 bg-white px-2 py-2 lg:flex">
-//           {navigation.map((item) => {
-//             const active = pathname === item.href;
-
-//             return (
-//               <Link
-//                 key={item.name}
-//                 href={item.href}
-//                 className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 ${
-//                   active
-//                     ? "bg-blue-600 text-white shadow-sm"
-//                     : "text-slate-700 hover:bg-slate-100 hover:text-blue-600"
-//                 }`}
-//               >
-//                 {item.name}
-//               </Link>
-//             );
-//           })}
-//         </div>
-
-//         {/* ================= Right Side ================= */}
-
-//         <div className="hidden items-center gap-3 lg:flex">
-//           {isLoggedIn ? (
-//             <>
-//               <Link
-//                 href="/dashboard"
-//                 className="rounded-xl bg-blue-600 px-6 py-2.5 font-medium text-white transition hover:bg-blue-700"
-//               >
-//                 Dashboard
-//               </Link>
-
-//               <button className="rounded-xl border border-slate-300 px-6 py-2.5 font-medium transition hover:bg-slate-100">
-//                 Logout
-//               </button>
-//             </>
-//           ) : (
-//             <>
-//               <Link
-//                 href="/login"
-//                 className="rounded-xl border border-slate-300 px-6 py-2.5 font-medium text-slate-700 transition hover:bg-slate-100"
-//               >
-//                 Login
-//               </Link>
-
-//               <Link
-//                 href="/register"
-//                 className="rounded-xl bg-blue-600 px-6 py-2.5 font-medium text-white transition hover:bg-blue-700"
-//               >
-//                 Register
-//               </Link>
-//             </>
-//           )}
-//         </div>
-
-//       {/* ================= Mobile Button ================= */}
-
-// <button
-//   onClick={() => setMobileOpen((prev) => !prev)}
-//   className="rounded-lg p-2 text-slate-700 transition hover:bg-slate-100 lg:hidden"
-//   aria-label="Toggle navigation menu"
-//   aria-expanded={mobileOpen}
-// >
-//   {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-// </button>
-//       </nav>
-// {/* ================= Mobile Menu ================= */}
-
-// {mobileOpen && (
-//   <div className="border-t border-slate-200 bg-white shadow-lg lg:hidden">
-//     <div className="space-y-2 px-4 py-5">
-//       {navigation.map((item) => {
-//         const active = pathname === item.href;
-
-//         return (
-//           <Link
-//             key={item.name}
-//             href={item.href}
-//             className={`block rounded-xl px-4 py-3 font-medium transition ${
-//               active
-//                 ? "bg-blue-600 text-white"
-//                 : "text-slate-700 hover:bg-slate-100 hover:text-blue-600"
-//             }`}
-//           >
-//             {item.name}
-//           </Link>
-//         );
-//       })}
-
-//       <div className="my-4 border-t border-slate-200" />
-
-//       {isLoggedIn ? (
-//         <div className="space-y-3">
-//           <Link
-//             href="/dashboard"
-//             className="block rounded-xl bg-blue-600 px-4 py-3 text-center font-medium text-white transition hover:bg-blue-700"
-//           >
-//             Dashboard
-//           </Link>
-
-//           <button className="w-full rounded-xl border border-slate-300 px-4 py-3 font-medium transition hover:bg-slate-100">
-//             Logout
-//           </button>
-//         </div>
-//       ) : (
-//         <div className="space-y-3">
-//           <Link
-//             href="/login"
-//             className="block rounded-xl border border-slate-300 px-4 py-3 text-center font-medium transition hover:bg-slate-100"
-//           >
-//             Login
-//           </Link>
-
-//           <Link
-//             href="/register"
-//             className="block rounded-xl bg-blue-600 px-4 py-3 text-center font-medium text-white transition hover:bg-blue-700"
-//           >
-//             Register
-//           </Link>
-//         </div>
-//       )}
-//     </div>
-//   </div>
-// )}
-//     </header>
-//   );
-// }
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -215,24 +13,52 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ];
 
+type User = {
+  name?: string;
+  email?: string;
+  role?: "user" | "owner" | "admin";
+};
+
 export default function Navbar() {
   const pathname = usePathname();
-
-  // Temporary auth state
-  // Later replace with Better Auth session
-  const isLoggedIn = false;
+  const router = useRouter();
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
+  /*
+  |--------------------------------------------------------------------------
+  | Get Logged In User
+  |--------------------------------------------------------------------------
+  */
 
-  // Close mobile menu after route change
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+  }, [pathname]);
+
+  /*
+  |--------------------------------------------------------------------------
+  | Close Mobile Menu
+  |--------------------------------------------------------------------------
+  */
+
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
+  /*
+  |--------------------------------------------------------------------------
+  | Navbar Scroll Effect
+  |--------------------------------------------------------------------------
+  */
 
-  // Navbar scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -240,141 +66,129 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () => {
+    return () =>
       window.removeEventListener(
         "scroll",
         handleScroll
       );
-    };
-
   }, []);
 
+  /*
+  |--------------------------------------------------------------------------
+  | Logout
+  |--------------------------------------------------------------------------
+  */
 
-  // Escape close
-  useEffect(() => {
-    const handleEscape = (
-      event: KeyboardEvent
-    ) => {
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-      if(event.key === "Escape"){
-        setMobileOpen(false);
-      }
+    setUser(null);
 
-    };
+    toast.success("Logged out successfully");
 
+    router.push("/login");
+  };
 
-    window.addEventListener(
-      "keydown",
-      handleEscape
-    );
+  /*
+  |--------------------------------------------------------------------------
+  | Role Label
+  |--------------------------------------------------------------------------
+  */
 
-
-    return () =>
-      window.removeEventListener(
-        "keydown",
-        handleEscape
-      );
-
-  }, []);
-
-
+  const roleLabel = {
+    admin: "Administrator",
+    owner: "Property Owner",
+    user: "Customer",
+  }[user?.role || "user"];
 
   return (
-
     <header
       className={`
-        fixed top-0 left-0 right-0 z-50
-        transition-all duration-300
-
+        fixed
+        inset-x-0
+        top-0
+        z-50
+        transition-all
+        duration-300
         ${
           scrolled
-          ? `
-           bg-[#F7F3EC]/90
-            backdrop-blur-lg
-            shadow-md
-            border-b
-            border-border
-          `
-          :
-          `
-           bg-[#F7F3EC]
-          `
+            ? "border-b border-border bg-[#F7F3EC]/90 backdrop-blur-lg shadow-md"
+            : "bg-[#F7F3EC]"
         }
-
       `}
     >
-
-
       <nav
         className="
           mx-auto
-          flex
-          h-20
           max-w-7xl
-          items-center
-          justify-between
           px-4
           sm:px-6
           lg:px-8
+          h-20
+          flex
+          items-center
         "
       >
+                {/* Left : Logo */}
 
-
-        {/* Logo */}
-
-        <Link
-          href="/"
+        <div
           className="
-            text-2xl
-            font-bold
-            tracking-tight
+            flex
+            flex-1
+            items-center
           "
         >
+          <Link
+            href="/"
+            className="
+              text-2xl
+              font-bold
+              tracking-tight
+              whitespace-nowrap
+            "
+          >
+            <span className="text-primary">
+              Property
+            </span>
 
-          <span className="text-primary">
-            Property
-          </span>
+            <span className="text-secondary">
+              Nest
+            </span>
+          </Link>
+        </div>
 
-          <span className="text-secondary">
-            Nest
-          </span>
-
-        </Link>
-
-
-
-        {/* Desktop Navigation */}
-
+        {/* Center : Navigation */}
 
         <div
           className="
             hidden
             lg:flex
-            items-center
-            rounded-full
-            border
-            border-border
-            bg-white
-            p-1
-            shadow-sm
+            flex-1
+            justify-center
           "
         >
-
-          {
-            navigation.map((item)=>{
-
+          <div
+            className="
+              flex
+              items-center
+              gap-3
+              rounded-full
+              border
+              border-border
+              bg-white
+              px-2
+              py-1
+              shadow-sm
+            "
+          >
+            {navigation.map((item) => {
               const active =
                 item.href === "/"
-                ?
-                pathname === "/"
-                :
-                pathname.startsWith(
-                  item.href
-                );
-
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
 
               return (
-
                 <Link
                   key={item.name}
                   href={item.href}
@@ -386,62 +200,111 @@ export default function Navbar() {
                     font-medium
                     transition-all
                     duration-300
-
-
                     ${
                       active
-                      ?
-                      `
-                        bg-gradient-to-r
-                        from-[#1E3A5F]
-                        to-[#C89B3C]
-                        text-white
-                        shadow-md
-                      `
-                      :
-                      `
-                        text-foreground
-                        hover:bg-[#F5EFE6]
-                        hover:text-primary
-                      `
+                        ? "bg-gradient-to-r from-[#1E3A5F] to-[#C89B3C] text-white shadow-md"
+                        : "text-foreground hover:bg-[#F5EFE6] hover:text-primary"
                     }
-
                   `}
                 >
-
                   {item.name}
-
                 </Link>
-
               );
-
-            })
-          }
-
-
+            })}
+          </div>
         </div>
 
-
-
-        {/* Desktop Actions */}
+        {/* Right : Actions */}
 
         <div
           className="
             hidden
             lg:flex
+            flex-1
+            justify-end
             items-center
-            gap-3
+            gap-4
           "
         >
-
-          {
-            isLoggedIn
-            ?
-
+          {user ? (
             <>
+              <div className="text-right leading-tight">
+                <p
+                  className="
+                    text-sm
+                    font-semibold
+                    text-[#1E3A5F]
+                  "
+                >
+                  {user.name}
+                </p>
+
+                <p
+                  className="
+                    text-xs
+                    text-gray-500
+                  "
+                >
+                  {roleLabel}
+                </p>
+              </div>
 
               <Link
                 href="/dashboard"
+                className="
+                  rounded-xl
+                  bg-gradient-to-r
+                  from-[#1E3A5F]
+                  to-[#C89B3C]
+                  px-5
+                  py-2.5
+                  text-sm
+                  font-medium
+                  text-white
+                  transition
+                  hover:shadow-lg
+                "
+              >
+                Dashboard
+              </Link>
+
+              <button
+                onClick={logout}
+                className="
+                  rounded-xl
+                  border
+                  border-border
+                  px-5
+                  py-2.5
+                  text-sm
+                  font-medium
+                  transition
+                  hover:bg-[#F5EFE6]
+                "
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="
+                  rounded-xl
+                  border
+                  border-border
+                  px-6
+                  py-2.5
+                  font-medium
+                  transition
+                  hover:bg-[#F5EFE6]
+                "
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/register"
                 className="
                   rounded-xl
                   bg-gradient-to-r
@@ -455,328 +318,202 @@ export default function Navbar() {
                   hover:shadow-lg
                 "
               >
-                Dashboard
-              </Link>
-
-
-              <button
-                className="
-                  rounded-xl
-                  border
-                  border-border
-                  px-6
-                  py-2.5
-                  font-medium
-                  hover:bg-[#F5EFE6]
-                "
-              >
-                Logout
-              </button>
-
-            </>
-
-
-            :
-
-            <>
-
-              <Link
-                href="/login"
-                className="
-                  rounded-xl
-                  border
-                  border-border
-                  px-6
-                  py-2.5
-                  font-medium
-                  hover:bg-[#F5EFE6]
-                "
-              >
-                Login
-              </Link>
-
-
-
-              <Link
-                href="/register"
-                className="
-                  rounded-xl
-                  bg-gradient-to-r
-                  from-[#1E3A5F]
-                  to-[#C89B3C]
-                  px-6
-                  py-2.5
-                  font-medium
-                  text-white
-                  hover:shadow-lg
-                "
-              >
                 Register
               </Link>
-
             </>
-
-          }
-
-
+          )}
         </div>
 
-
-
-        {/* Mobile Button */}
+        {/* Mobile Menu Button */}
 
         <button
-          onClick={()=>
-            setMobileOpen(
-              !mobileOpen
-            )
+          onClick={() =>
+            setMobileOpen(!mobileOpen)
           }
           className="
             rounded-lg
             p-2
             text-primary
+            transition
             hover:bg-[#F5EFE6]
             lg:hidden
           "
-          aria-label="Toggle menu"
+          aria-label="Toggle Menu"
         >
-
-          {
-            mobileOpen
-            ?
-            <X size={28}/>
-            :
-            <Menu size={28}/>
-          }
-
+          {mobileOpen ? (
+            <X size={28} />
+          ) : (
+            <Menu size={28} />
+          )}
         </button>
 
-
       </nav>
-      
-      {/* Mobile Menu */}
+            {/* Mobile Menu */}
 
-      {
-        mobileOpen && (
-
+      {mobileOpen && (
+        <div
+          className="
+            border-t
+            border-border
+            bg-white
+            shadow-lg
+            lg:hidden
+          "
+        >
           <div
             className="
-              border-t
-              border-border
-              bg-white
-              shadow-lg
-              lg:hidden
+              space-y-3
+              px-4
+              py-5
             "
           >
+            {/* Navigation */}
 
-            <div
-              className="
-                space-y-3
-                px-4
-                py-5
-                sm:px-6
-              "
-            >
+            {navigation.map((item) => {
+              const active =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
 
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`
+                    block
+                    rounded-xl
+                    px-4
+                    py-3
+                    font-medium
+                    transition
+                    ${
+                      active
+                        ? "bg-gradient-to-r from-[#1E3A5F] to-[#C89B3C] text-white"
+                        : "text-foreground hover:bg-[#F5EFE6]"
+                    }
+                  `}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
 
-              {/* Mobile Links */}
+            <div className="my-5 border-t border-border" />
 
-              {
-                navigation.map((item)=>{
+            {/* Logged In */}
 
-                  const active =
-                    item.href === "/"
-                    ?
-                    pathname === "/"
-                    :
-                    pathname.startsWith(
-                      item.href
-                    );
-
-
-                  return (
-
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={`
-                        block
-                        rounded-xl
-                        px-4
-                        py-3
-                        font-medium
-                        transition-all
-                        duration-300
-
-
-                        ${
-                          active
-                          ?
-                          `
-                            bg-gradient-to-r
-                            from-[#1E3A5F]
-                            to-[#C89B3C]
-                            text-white
-                            shadow-md
-                          `
-                          :
-                          `
-                            text-foreground
-                            hover:bg-[#F5EFE6]
-                            hover:text-primary
-                          `
-                        }
-
-                      `}
-                    >
-
-                      {item.name}
-
-                    </Link>
-
-                  );
-
-
-                })
-              }
-
-
-
-              <div
-                className="
-                  my-5
-                  border-t
-                  border-border
-                "
-              />
-
-
-
-              {/* Mobile Auth */}
-
-              {
-                isLoggedIn
-
-                ?
-
+            {user ? (
+              <>
                 <div
                   className="
-                    space-y-3
+                    rounded-2xl
+                    bg-[#F8FAFC]
+                    p-4
+                    text-center
                   "
                 >
-
-                  <Link
-                    href="/dashboard"
+                  <p
                     className="
-                      block
-                      rounded-xl
-                      bg-gradient-to-r
-                      from-[#1E3A5F]
-                      to-[#C89B3C]
-                      px-4
-                      py-3
-                      text-center
-                      font-medium
-                      text-white
-                      hover:shadow-lg
+                      text-base
+                      font-semibold
+                      text-[#1E3A5F]
                     "
                   >
+                    {user.name}
+                  </p>
 
-                    Dashboard
-
-                  </Link>
-
-
-                  <button
+                  <p
                     className="
-                      w-full
-                      rounded-xl
-                      border
-                      border-border
-                      px-4
-                      py-3
-                      font-medium
-                      hover:bg-[#F5EFE6]
+                      mt-1
+                      text-sm
+                      text-gray-500
                     "
                   >
-
-                    Logout
-
-                  </button>
-
-
+                    {roleLabel}
+                  </p>
                 </div>
 
-
-                :
-
-
-                <div
+                <Link
+                  href="/dashboard"
                   className="
-                    space-y-3
+                    block
+                    rounded-xl
+                    bg-gradient-to-r
+                    from-[#1E3A5F]
+                    to-[#C89B3C]
+                    px-4
+                    py-3
+                    text-center
+                    font-medium
+                    text-white
+                    transition
+                    hover:shadow-lg
                   "
                 >
+                  Dashboard
+                </Link>
 
+                <button
+                  onClick={logout}
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-border
+                    px-4
+                    py-3
+                    font-medium
+                    transition
+                    hover:bg-[#F5EFE6]
+                  "
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="
+                    block
+                    rounded-xl
+                    border
+                    border-border
+                    px-4
+                    py-3
+                    text-center
+                    font-medium
+                    transition
+                    hover:bg-[#F5EFE6]
+                  "
+                >
+                  Login
+                </Link>
 
-                  <Link
-                    href="/login"
-                    className="
-                      block
-                      rounded-xl
-                      border
-                      border-border
-                      px-4
-                      py-3
-                      text-center
-                      font-medium
-                      hover:bg-[#F5EFE6]
-                    "
-                  >
-
-                    Login
-
-                  </Link>
-
-
-
-                  <Link
-                    href="/register"
-                    className="
-                      block
-                      rounded-xl
-                      bg-gradient-to-r
-                      from-[#1E3A5F]
-                      to-[#C89B3C]
-                      px-4
-                      py-3
-                      text-center
-                      font-medium
-                      text-white
-                      hover:shadow-lg
-                    "
-                  >
-
-                    Register
-
-                  </Link>
-
-
-                </div>
-
-              }
-
-
-            </div>
-
-
+                <Link
+                  href="/register"
+                  className="
+                    block
+                    rounded-xl
+                    bg-gradient-to-r
+                    from-[#1E3A5F]
+                    to-[#C89B3C]
+                    px-4
+                    py-3
+                    text-center
+                    font-medium
+                    text-white
+                    transition
+                    hover:shadow-lg
+                  "
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
-
-        )
-      }
-
-
+        </div>
+      )}
     </header>
-
   );
-
 }

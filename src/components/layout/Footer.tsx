@@ -135,7 +135,7 @@ export default function Footer() {
                 />
 
                 <p className="text-slate-300">
-                  Dhaka, Bangladesh
+                  Chattogram, Bangladesh
                 </p>
               </div>
 
@@ -146,7 +146,7 @@ export default function Footer() {
                 />
 
                 <p className="text-slate-300">
-                  +880 1712-345678
+                 +880 1712-345678
                 </p>
               </div>
 
@@ -157,7 +157,7 @@ export default function Footer() {
                 />
 
                 <p className="text-slate-300">
-                  support@propertynest.com
+                  support@estatehub.com
                 </p>
               </div>
             </div>

@@ -1,16 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import React from "react";
 
 import {
   ArrowRight,
-  Search,
-  MapPin,
-  Building2,
-  BadgeDollarSign,
 } from "lucide-react";
 
 import HeroSlider from "./HeroSlider";
@@ -32,72 +25,8 @@ const stats = [
 ];
 
 
-const locations = [
-  "Dhaka",
-  "Chattogram",
-  "Sylhet",
-  "Khulna",
-  "Rajshahi",
-];
-
-
-const propertyTypes = [
-  "Apartment",
-  "Villa",
-  "Duplex",
-  "Commercial",
-];
-
-
-const budgets = [
-  "20 Lakh",
-  "50 Lakh",
-  "1 Crore",
-  "2 Crore+",
-];
-
-
 
 export default function Hero() {
-
-
-  const router = useRouter();
-
-
-  const [location,setLocation] = useState("");
-
-  const [propertyType,setPropertyType] = useState("");
-
-  const [budget,setBudget] = useState("");
-
-
-
-  const handleSearch = () => {
-
-
-    const params = new URLSearchParams();
-
-
-    if(location)
-      params.set("location",location);
-
-
-    if(propertyType)
-      params.set("type",propertyType);
-
-
-    if(budget)
-      params.set("budget",budget);
-
-
-
-    router.push(
-      `/properties?${params.toString()}`
-    );
-
-
-  };
-
 
 
 return (
@@ -164,7 +93,6 @@ lg:px-8
 
 
 
-{/* Hero Main */}
 
 <div
 className="
@@ -178,7 +106,9 @@ lg:min-h-[65vh]
 
 
 
-{/* Left */}
+
+
+{/* Left Content */}
 
 <div>
 
@@ -201,6 +131,7 @@ text-[#1E3A5F]
 🇧🇩 Bangladesh's Trusted Property Platform
 
 </span>
+
 
 
 
@@ -245,6 +176,7 @@ With Confidence
 
 
 
+
 <p
 className="
 mt-5
@@ -262,6 +194,8 @@ Browse verified listings and connect with trusted
 agents.
 
 </p>
+
+
 
 
 
@@ -289,7 +223,7 @@ rounded-xl
 bg-gradient-to-r
 from-[#1E3A5F]
 to-[#C89B3C]
-px-7
+px-4
 py-3
 font-semibold
 text-white
@@ -301,31 +235,17 @@ hover:-translate-y-1
 
 Browse Properties
 
-<ArrowRight className="ml-2 h-5"/>
-
-</Link>
-
-
-
-
-<Link
-href="/register"
+<ArrowRight
 className="
-rounded-xl
-border
-border-[#C89B3C]
-bg-white
-px-7
-py-3
-text-center
-font-semibold
-text-[#1E3A5F]
+ml-2
+h-5
 "
->
-
-List Property
+/>
 
 </Link>
+
+
+
 
 
 </div>
@@ -335,7 +255,9 @@ List Property
 
 
 
+
 {/* Stats */}
+
 
 <div
 className="
@@ -358,7 +280,9 @@ stats.map((item)=>(
 
 <div
 key={item.label}
-className="text-center"
+className="
+text-center
+"
 >
 
 <h3
@@ -399,7 +323,11 @@ sm:text-sm
 </div>
 
 
+
+
 </div>
+
+
 
 
 
@@ -407,111 +335,11 @@ sm:text-sm
 
 {/* Slider */}
 
+
 <HeroSlider />
 
 
 
-</div>
-
-
-
-
-
-
-
-{/* Search */}
-
-<div
-className="
-mt-8
-rounded-3xl
-border
-border-[#E7DDCB]
-bg-white
-p-5
-shadow-xl
-"
->
-
-
-<div
-className="
-grid
-gap-4
-md:grid-cols-2
-lg:grid-cols-4
-lg:items-end
-"
->
-
-
-
-<SearchSelect
-icon={<MapPin/>}
-title="Location"
-value={location}
-setValue={setLocation}
-options={locations}
-/>
-
-
-
-
-<SearchSelect
-icon={<Building2/>}
-title="Property Type"
-value={propertyType}
-setValue={setPropertyType}
-options={propertyTypes}
-/>
-
-
-
-
-<SearchSelect
-icon={<BadgeDollarSign/>}
-title="Budget"
-value={budget}
-setValue={setBudget}
-options={budgets}
-/>
-
-
-
-
-<button
-onClick={handleSearch}
-className="
-flex
-h-[50px]
-w-full
-items-center
-justify-center
-rounded-xl
-bg-gradient-to-r
-from-[#1E3A5F]
-to-[#C89B3C]
-px-5
-text-sm
-font-semibold
-text-white
-shadow-lg
-transition-all
-duration-300
-hover:-translate-y-1
-hover:shadow-xl
-"
->
-
-<Search className="mr-2 h-5 w-5"/>
-
-Search Properties
-
-</button>
-
-
-
-</div>
 
 
 </div>
@@ -525,144 +353,6 @@ Search Properties
 
 </section>
 
-
-);
-
-}
-
-
-
-
-
-
-type SearchSelectProps = {
-
-icon:React.ReactNode;
-
-title:string;
-
-value:string;
-
-setValue:(value:string)=>void;
-
-options:string[];
-
-};
-
-
-
-
-
-function SearchSelect({
-
-icon,
-
-title,
-
-value,
-
-setValue,
-
-options,
-
-
-}:SearchSelectProps){
-
-
-
-return (
-
-<div>
-
-
-<label
-className="
-mb-2
-block
-text-sm
-font-medium
-text-slate-500
-"
->
-
-{title}
-
-</label>
-
-
-
-
-<div
-className="
-flex
-h-[50px]
-items-center
-rounded-xl
-border
-border-slate-200
-px-3
-transition
-focus-within:border-[#C89B3C]
-"
->
-
-
-<span
-className="
-mr-2
-text-[#C89B3C]
-"
->
-
-{icon}
-
-</span>
-
-
-
-<select
-value={value}
-onChange={(e)=>setValue(e.target.value)}
-className="
-w-full
-bg-transparent
-text-sm
-outline-none
-"
->
-
-
-<option value="">
-All
-</option>
-
-
-
-{
-options.map((item)=>(
-
-<option
-key={item}
-value={item}
->
-
-{item}
-
-</option>
-
-))
-}
-
-
-
-</select>
-
-
-
-</div>
-
-
-</div>
 
 );
 
