@@ -287,25 +287,22 @@ export default function MyPropertiesPage() {
 
                     {/* Location */}
 
-                    <td className="px-6 py-5 text-slate-600">
-                      📍 {property.location}
-                    </td>
+     <td className="px-6 py-5 max-w-[220px]">
+  <div className="flex items-center gap-2 text-slate-600">
+    <span className="shrink-0">📍</span>
+    <span className="truncate">{property.location}</span>
+  </div>
+</td>
 
                     {/* Price */}
-
-                    <td className="px-6 py-5">
-
-                      <span
-                        className="
-                          text-lg
-                          font-bold
-                          text-[#C89B3C]
-                        "
-                      >
-                        ৳ {property.price.toLocaleString()}
-                      </span>
-
-                    </td>
+<td className="px-6 py-5">
+  <div className="flex items-center gap-1 whitespace-nowrap">
+    <span className="text-[#C89B3C]">৳</span>
+    <span className="text-lg font-bold text-[#C89B3C]">
+      {property.price.toLocaleString()}
+    </span>
+  </div>
+</td>
 
                     {/* Status */}
 
