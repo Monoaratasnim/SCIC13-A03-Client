@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-import Spinner from "@/components/common/spinner";
+import Spinner from "@/components/common/Spinner";
 
 import {
   getMyProperties,
