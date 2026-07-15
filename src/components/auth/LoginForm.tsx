@@ -367,7 +367,7 @@ export default function LoginForm() {
         onClick={() => {
 
           window.location.href =
-            "http://localhost:5000/api/auth/google";
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
 
         }}
 
