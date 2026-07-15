@@ -292,16 +292,12 @@ export default function MyPropertiesPage() {
                     </td>
 
                     {/* Price */}
-
-                   <td className="px-6 py-5">
-  <span
-    className="
-      text-base
-      font-semibold
-      text-[#C89B3C]
-    "
-  >
-    ৳ {property.price.toLocaleString()}
+<td className="px-6 py-5">
+  <span className="text-sm font-medium text-[#C89B3C]">
+    ৳
+  </span>
+  <span className="ml-1 text-base font-semibold text-[#C89B3C]">
+    {property.price.toLocaleString()}
   </span>
 </td>
 
