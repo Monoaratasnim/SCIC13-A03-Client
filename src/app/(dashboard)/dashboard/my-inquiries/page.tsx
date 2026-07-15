@@ -11,7 +11,7 @@ import type {
   Inquiry,
 } from "@/types/inquiry.types";
 
-
+import DashboardLoader from "@/components/common/DashboardLoader";
 export default function MyInquiriesPage() {
 
 
@@ -58,15 +58,9 @@ export default function MyInquiriesPage() {
 
 
 
-  if(loading){
-
-    return (
-      <div>
-        Loading inquiries...
-      </div>
-    );
-
-  }
+if (loading) {
+  return <DashboardLoader />;
+}
 
 
 
@@ -91,19 +85,30 @@ export default function MyInquiriesPage() {
         inquiries.length === 0 ?
 
         (
-          <div
-            className="
-            rounded-2xl
-            bg-white
-            p-10
-            text-center
-            "
-          >
+         <div
+  className="
+    rounded-2xl
+    bg-white
+    px-8
+    py-14
+    text-center
+    shadow-sm
+  "
+>
+  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#1E3A5F]/10">
+    <span className="text-3xl">📩</span>
+  </div>
 
-            No inquiries sent yet
+  <h2 className="text-2xl font-bold text-[#1E3A5F]">
+    No Inquiries Yet
+  </h2>
 
-          </div>
-
+  <p className="mx-auto mt-3 max-w-md text-slate-500">
+    You haven't sent any property inquiries yet.
+    Browse available properties and contact owners to
+    see your inquiries here.
+  </p>
+</div>
         )
 
         :

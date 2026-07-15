@@ -450,14 +450,14 @@ export default function InquiriesPage() {
                   }
                   className="
                     rounded-xl
-                    bg-red-500
+                    bg-[#C89B3C]
                     px-5
                     py-2
                     text-sm
                     font-semibold
                     text-white
                     transition
-                    hover:bg-red-600
+                    hover:bg-[#dca735]
                   "
                 >
 
