@@ -62,11 +62,11 @@ export default function DashboardSidebar() {
   ];
 
   const ownerMenu: MenuItem[] = [
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-      icon: LayoutDashboard,
-    },
+   {
+  label: "Dashboard",
+  href: "/dashboard/owner",
+  icon: LayoutDashboard,
+},
     {
       label: "My Profile",
       href: "/dashboard/profile",
@@ -96,10 +96,10 @@ export default function DashboardSidebar() {
 
   const adminMenu: MenuItem[] = [
     {
-      label: "Dashboard",
-      href: "/dashboard",
-      icon: LayoutDashboard,
-    },
+  label: "Dashboard",
+  href: "/dashboard/admin",
+  icon: LayoutDashboard,
+},
     {
       label: "Manage Users",
       href: "/dashboard/admin/manage-users",
@@ -174,7 +174,10 @@ export default function DashboardSidebar() {
           {menu.map((item) => {
             const Icon = item.icon;
 
-            const active = pathname === item.href;
+          const active =
+  pathname === item.href ||
+  (item.href !== "/dashboard" &&
+    pathname.startsWith(item.href));
 
             return (
               <Link
