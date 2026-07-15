@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Poppins } from "next/font/google";
 
 import Navbar from "@/components/layout/Navbar";
@@ -41,13 +42,18 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} bg-slate-50 text-slate-900 antialiased`}
       >
         <ToastProvider />
-        <GoogleHandler />
+
+        <Suspense fallback={null}>
+          <GoogleHandler />
+        </Suspense>
+
         <Navbar />
 
         <main className="pt-20 min-h-screen">
           {children}
         </main>
-        <Footer/>
+
+        <Footer />
       </body>
     </html>
   );
