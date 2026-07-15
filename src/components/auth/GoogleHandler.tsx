@@ -63,7 +63,8 @@ export default function GoogleAuthHandler() {
 
     // remove token from URL
 
-    router.replace("/");
+   router.replace("/");
+router.refresh();
 
 
   },[searchParams,router]);
