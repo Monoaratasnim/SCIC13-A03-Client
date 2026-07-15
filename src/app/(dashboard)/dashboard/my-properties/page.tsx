@@ -288,24 +288,22 @@ export default function MyPropertiesPage() {
                     {/* Location */}
 
                     <td className="px-6 py-5 text-slate-600">
-                      📍 {property.location}
+                       {property.location}
                     </td>
 
                     {/* Price */}
 
-                    <td className="px-6 py-5">
-
-                      <span
-                        className="
-                          text-lg
-                          font-bold
-                          text-[#C89B3C]
-                        "
-                      >
-                        ৳ {property.price.toLocaleString()}
-                      </span>
-
-                    </td>
+                   <td className="px-6 py-5">
+  <span
+    className="
+      text-base
+      font-semibold
+      text-[#C89B3C]
+    "
+  >
+    ৳ {property.price.toLocaleString()}
+  </span>
+</td>
 
                     {/* Status */}
 
