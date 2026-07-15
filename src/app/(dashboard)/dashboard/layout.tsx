@@ -12,16 +12,14 @@ type DashboardLayoutProps = {
 export default function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-
   const [open, setOpen] = useState(false);
 
   return (
+    <section className="min-h-screen overflow-x-hidden bg-slate-50">
 
-    <section className="min-h-screen bg-slate-50">
+      {/* Mobile Header */}
 
-      {/* Mobile Top Bar */}
-
-      <div
+      <header
         className="
           sticky
           top-0
@@ -29,15 +27,14 @@ export default function DashboardLayout({
           flex
           items-center
           justify-between
-            border-b
-         border-slate-200
+          border-b
+          border-slate-200
           bg-white
           px-4
           py-4
           md:hidden
         "
       >
-
         <button
           onClick={() => setOpen(true)}
           className="rounded-lg p-2 hover:bg-slate-100"
@@ -50,66 +47,65 @@ export default function DashboardLayout({
         </h1>
 
         <div className="w-8" />
+      </header>
 
-      </div>
-
-      {/* Mobile Overlay */}
+      {/* Mobile Sidebar */}
 
       {open && (
-
         <div
           className="fixed inset-0 z-50 bg-black/40 md:hidden"
           onClick={() => setOpen(false)}
         >
-
           <div
             onClick={(e) => e.stopPropagation()}
             className="
-              h-full
+              h-screen
               w-72
               bg-white
               shadow-xl
             "
           >
-
             <div className="flex justify-end p-4">
-
-              <button
-                onClick={() => setOpen(false)}
-              >
+              <button onClick={() => setOpen(false)}>
                 <X size={24} />
               </button>
-
             </div>
 
             <DashboardSidebar />
-
           </div>
-
         </div>
-
       )}
 
-      <div className="mx-auto flex max-w-7xl">
+      {/* Desktop Sidebar */}
 
-        {/* Desktop Sidebar */}
+      <aside
+        className="
+          fixed
+          left-0
+          top-0
+          hidden
+          h-screen
+          w-72
+          md:block
+        "
+      >
+        <DashboardSidebar />
+      </aside>
 
-        <div className="hidden md:block">
-          <DashboardSidebar />
-        </div>
+      {/* Main */}
 
-        {/* Main Content */}
-
-        <main className="flex-1 p-6 sm:p-8">
-
-          {children}
-
-        </main>
-
-      </div>
-
+      <main
+        className="
+          min-w-0
+          px-4
+          py-6
+          sm:px-6
+          lg:px-8
+          md:ml-72
+        "
+      >
+        {children}
+      </main>
     </section>
-
   );
-
 }
