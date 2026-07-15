@@ -174,10 +174,10 @@ export default function DashboardSidebar() {
           {menu.map((item) => {
             const Icon = item.icon;
 
-          const active =
-  pathname === item.href ||
-  (item.href !== "/dashboard" &&
-    pathname.startsWith(item.href));
+    const active =
+  item.label === "Dashboard"
+    ? pathname === item.href
+    : pathname === item.href;
 
             return (
               <Link
