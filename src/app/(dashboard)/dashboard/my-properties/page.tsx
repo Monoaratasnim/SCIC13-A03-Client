@@ -69,43 +69,56 @@ export default function MyPropertiesPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 overflow-x-hidden">
 
-      {/* Header */}
+      {/* ==========================================
+          Header
+      ========================================== */}
 
       <section
         className="
           rounded-3xl
           bg-white
-          p-8
+          p-5
           shadow-sm
           ring-1
           ring-slate-100
+          sm:p-6
+          lg:p-8
         "
       >
         <div
           className="
             flex
             flex-col
-            gap-6
+            gap-5
             md:flex-row
             md:items-center
             md:justify-between
           "
         >
-          <div>
+          <div className="min-w-0">
 
             <h1
               className="
-                text-3xl
+                text-2xl
                 font-bold
                 text-[#1E3A5F]
+                sm:text-3xl
               "
             >
               My Properties
             </h1>
 
-            <p className="mt-2 text-slate-500">
+            <p
+              className="
+                mt-2
+                max-w-2xl
+                text-sm
+                text-slate-500
+                sm:text-base
+              "
+            >
               Manage, monitor and organize all your property listings.
             </p>
 
@@ -115,19 +128,23 @@ export default function MyPropertiesPage() {
             href="/dashboard/add-property"
             className="
               inline-flex
+              w-full
               items-center
               justify-center
               rounded-2xl
               bg-gradient-to-r
               from-[#1E3A5F]
               to-[#C89B3C]
-              px-7
+              px-6
               py-3
+              text-sm
               font-semibold
               text-white
-              transition
-              hover:scale-105
+              transition-all
+              duration-200
+              hover:scale-[1.02]
               hover:shadow-lg
+              sm:w-auto
             "
           >
             + Add Property
@@ -136,7 +153,9 @@ export default function MyPropertiesPage() {
         </div>
       </section>
 
-      {/* Desktop Table */}
+      {/* ==========================================
+          Desktop Table
+      ========================================== */}
 
       <section
         className="
@@ -152,7 +171,7 @@ export default function MyPropertiesPage() {
       >
         <div className="overflow-x-auto">
 
-          <table className="min-w-full">
+          <table className="w-full table-fixed">
 
             <thead
               className="
@@ -163,23 +182,23 @@ export default function MyPropertiesPage() {
             >
               <tr>
 
-                <th className="px-8 py-5 text-left text-sm font-semibold text-slate-600">
+                <th className="w-[38%] px-8 py-5 text-left text-sm font-semibold text-slate-600">
                   Property
                 </th>
 
-                <th className="px-6 py-5 text-left text-sm font-semibold text-slate-600">
+                <th className="w-[22%] px-6 py-5 text-left text-sm font-semibold text-slate-600">
                   Location
                 </th>
 
-                <th className="px-6 py-5 text-left text-sm font-semibold text-slate-600">
+                <th className="w-[15%] px-6 py-5 text-left text-sm font-semibold text-slate-600">
                   Price
                 </th>
 
-                <th className="px-6 py-5 text-left text-sm font-semibold text-slate-600">
+                <th className="w-[12%] px-6 py-5 text-left text-sm font-semibold text-slate-600">
                   Status
                 </th>
 
-                <th className="px-6 py-5 text-center text-sm font-semibold text-slate-600">
+                <th className="w-[13%] px-6 py-5 text-center text-sm font-semibold text-slate-600">
                   Actions
                 </th>
 
@@ -187,215 +206,237 @@ export default function MyPropertiesPage() {
             </thead>
 
             <tbody>
-
               {properties.length === 0 ? (
 
-                <tr>
+  <tr>
 
-                  <td
-                    colSpan={5}
-                    className="
-                      py-20
-                      text-center
-                    "
-                  >
-                    <h3 className="text-xl font-semibold text-[#1E3A5F]">
-                      No Properties Found
-                    </h3>
+    <td
+      colSpan={5}
+      className="py-20 text-center"
+    >
+      <h3 className="text-xl font-semibold text-[#1E3A5F]">
+        No Properties Found
+      </h3>
 
-                    <p className="mt-2 text-slate-500">
-                      Start by adding your first property.
-                    </p>
+      <p className="mt-2 text-slate-500">
+        Start by adding your first property.
+      </p>
 
-                    <Link
-                      href="/dashboard/add-property"
-                      className="
-                        mt-6
-                        inline-flex
-                        rounded-xl
-                        bg-[#1E3A5F]
-                        px-6
-                        py-3
-                        font-medium
-                        text-white
-                        transition
-                        hover:bg-[#173250]
-                      "
-                    >
-                      Add Property
-                    </Link>
-
-                  </td>
-
-                </tr>
-
-              ) : (
-
-                properties.map((property) => (
-
-                  <tr
-                    key={property._id}
-                 
-                    className="
-                    transition-all
-                    duration-200
-                   hover:bg-[#F8FAFC]">
-
-                    {/* Property */}
-
-                    <td className="px-8 py-5">
-
-                      <div className="flex items-center gap-4">
-
-                        <Image
-                          src={
-                            property.images?.[0] ??
-                            "/placeholder-property.jpg"
-                          }
-                          alt={property.title}
-                          width={140}
-                          height={90}
-                          className="
-                            h-20
-                            w-28
-                            rounded-2xl
-                            object-cover
-                          "
-                        />
-
-                        <div>
-
-                          <h3
-                            className="
-                              text-base
-                              font-semibold
-                              text-[#1E3A5F]
-                            "
-                          >
-                            {property.title}
-                          </h3>
-
-                          <p className="mt-1 text-sm text-slate-500">
-                            {property.propertyType}
-                          </p>
-
-                        </div>
-
-                      </div>
-
-                    </td>
-
-                    {/* Location */}
-
-     <td className="px-6 py-5 max-w-[220px]">
-  <div className="flex items-center gap-2 text-slate-600">
-    <span className="shrink-0">📍</span>
-    <span className="truncate">{property.location}</span>
-  </div>
-</td>
-
-                    {/* Price */}
-<td className="px-6 py-5">
-  <div className="flex items-center gap-1 whitespace-nowrap">
-    <span className="text-[#C89B3C]">৳</span>
-    <span className="text-lg font-bold text-[#C89B3C]">
-      {property.price.toLocaleString()}
-    </span>
-  </div>
-</td>
-
-                    {/* Status */}
-
-                    <td className="px-6 py-5">
-
-                      <span
-                        className={`
-                          inline-flex
-                          rounded-full
-                          px-4
-                          py-1.5
-                          text-xs
-                          font-semibold
-
-                          ${
-                            property.status === "available"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-red-100 text-red-700"
-                          }
-                        `}
-                      >
-                        {property.status}
-                      </span>
-
-                    </td>
-
-                    {/* Actions */}
-
-                    <td className="px-6 py-5">
-
-                      <div className="flex justify-center gap-3">
-
-                        <Link
-                          href={`/properties/${property._id}`}
-                          className="
-                            rounded-xl
-                            border
-                            border-slate-200
-                            px-5
-                            py-2.5
-                            text-sm
-                            font-medium
-                            transition
-                            hover:bg-slate-100
-                          "
-                        >
-                          View
-                        </Link>
-
-                        <button
-                          onClick={() =>
-                            handleDelete(property._id)
-                          }
-                          className="
-                            rounded-xl
-                            bg-red-500
-                            px-5
-                            py-2.5
-                            text-sm
-                            font-medium
-                            text-white
-                            transition
-                            hover:bg-red-600
-                          "
-                        >
-                          Delete
-                        </button>
-
-                      </div>
-
-                    </td>
-
-                  </tr>
-
-                ))
-
-              )}
-
-            </tbody>
-
-          </table>
-
-        </div>
-      </section>
-            {/* Mobile Cards */}
-
-      <section
+      <Link
+        href="/dashboard/add-property"
         className="
-          grid
-          gap-6
-          lg:hidden
+          mt-6
+          inline-flex
+          rounded-xl
+          bg-[#1E3A5F]
+          px-6
+          py-3
+          font-medium
+          text-white
+          transition
+          hover:bg-[#173250]
         "
       >
+        Add Property
+      </Link>
+    </td>
+
+  </tr>
+
+) : (
+
+  properties.map((property) => (
+
+    <tr
+      key={property._id}
+      className="
+        border-b
+        border-slate-100
+        transition-colors
+        hover:bg-slate-50
+      "
+    >
+
+      {/* Property */}
+
+      <td className="px-8 py-5">
+
+        <div className="flex items-center gap-4 min-w-0">
+
+          <Image
+            src={
+              property.images?.[0] ??
+              "/placeholder-property.jpg"
+            }
+            alt={property.title}
+            width={112}
+            height={80}
+            className="
+              h-20
+              w-28
+              shrink-0
+              rounded-2xl
+              object-cover
+            "
+          />
+
+          <div className="min-w-0 flex-1">
+
+            <h3
+              className="
+                truncate
+                text-base
+                font-semibold
+                text-[#1E3A5F]
+              "
+              title={property.title}
+            >
+              {property.title}
+            </h3>
+
+            <p className="mt-1 truncate text-sm text-slate-500">
+              {property.propertyType}
+            </p>
+
+          </div>
+
+        </div>
+
+      </td>
+
+      {/* Location */}
+
+      <td className="px-6 py-5">
+
+        <div
+          className="flex items-center gap-2 min-w-0"
+          title={property.location}
+        >
+          <span className="shrink-0">
+            📍
+          </span>
+
+          <span className="truncate text-slate-600">
+            {property.location}
+          </span>
+        </div>
+
+      </td>
+
+      {/* Price */}
+
+      <td className="px-6 py-5">
+
+        <div className="flex items-center whitespace-nowrap">
+
+          <span className="mr-1 text-[#C89B3C]">
+            ৳
+          </span>
+
+          <span
+            className="
+              text-lg
+              font-bold
+              text-[#C89B3C]
+            "
+          >
+            {property.price.toLocaleString()}
+          </span>
+
+        </div>
+
+      </td>
+
+      {/* Status */}
+
+      <td className="px-6 py-5">
+
+        <span
+          className={`
+            inline-flex
+            rounded-full
+            px-4
+            py-1.5
+            text-xs
+            font-semibold
+            capitalize
+
+            ${
+              property.status === "available"
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
+            }
+          `}
+        >
+          {property.status}
+        </span>
+
+      </td>
+
+      {/* Actions */}
+
+      <td className="px-6 py-5">
+
+        <div className="flex items-center justify-center gap-2">
+
+          <Link
+            href={`/properties/${property._id}`}
+            className="
+              rounded-xl
+              border
+              border-slate-200
+              px-4
+              py-2
+              text-sm
+              font-medium
+              transition
+              hover:bg-slate-100
+            "
+          >
+            View
+          </Link>
+
+          <button
+            onClick={() =>
+              handleDelete(property._id)
+            }
+            className="
+              rounded-xl
+              bg-red-500
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white
+              transition
+              hover:bg-red-600
+            "
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+  ))
+
+)}
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+      {/* ============================
+          Mobile Cards
+      ============================ */}
+
+      <section className="grid gap-6 lg:hidden">
 
         {properties.length === 0 ? (
 
@@ -410,7 +451,6 @@ export default function MyPropertiesPage() {
               ring-slate-100
             "
           >
-
             <h2 className="text-xl font-bold text-[#1E3A5F]">
               No Properties Found
             </h2>
@@ -443,7 +483,7 @@ export default function MyPropertiesPage() {
 
           properties.map((property) => (
 
-            <div
+            <article
               key={property._id}
               className="
                 overflow-hidden
@@ -452,7 +492,8 @@ export default function MyPropertiesPage() {
                 shadow-sm
                 ring-1
                 ring-slate-100
-                transition
+                transition-all
+                duration-300
                 hover:-translate-y-1
                 hover:shadow-lg
               "
@@ -460,7 +501,7 @@ export default function MyPropertiesPage() {
 
               {/* Image */}
 
-              <div className="relative h-56">
+              <div className="relative h-56 w-full">
 
                 <Image
                   src={
@@ -469,6 +510,7 @@ export default function MyPropertiesPage() {
                   }
                   alt={property.title}
                   fill
+                  sizes="100vw"
                   className="object-cover"
                 />
 
@@ -494,12 +536,13 @@ export default function MyPropertiesPage() {
 
               {/* Content */}
 
-              <div className="space-y-4 p-5">
+              <div className="space-y-5 p-5">
 
                 <div>
 
                   <h2
                     className="
+                      truncate
                       text-xl
                       font-bold
                       text-[#1E3A5F]
@@ -508,9 +551,20 @@ export default function MyPropertiesPage() {
                     {property.title}
                   </h2>
 
-                  <p className="mt-2 text-slate-500">
-                    📍 {property.location}
-                  </p>
+                  <div className="mt-3 flex items-center gap-2">
+
+                    <span className="shrink-0">
+                      📍
+                    </span>
+
+                    <p
+                      className="truncate text-slate-500"
+                      title={property.location}
+                    >
+                      {property.location}
+                    </p>
+
+                  </div>
 
                 </div>
 
@@ -519,11 +573,13 @@ export default function MyPropertiesPage() {
                     flex
                     items-center
                     justify-between
+                    gap-4
                   "
                 >
 
                   <span
                     className="
+                      whitespace-nowrap
                       text-2xl
                       font-bold
                       text-[#C89B3C]
@@ -539,6 +595,7 @@ export default function MyPropertiesPage() {
                       py-1.5
                       text-xs
                       font-semibold
+                      capitalize
 
                       ${
                         property.status === "available"
@@ -552,18 +609,19 @@ export default function MyPropertiesPage() {
 
                 </div>
 
+                {/* Stats */}
+
                 <div
                   className="
                     grid
                     grid-cols-3
                     rounded-2xl
                     bg-slate-50
-                    p-3
-                    text-center
+                    p-4
                   "
                 >
 
-                  <div>
+                  <div className="text-center">
 
                     <p className="text-lg font-bold text-[#1E3A5F]">
                       {property.bedrooms ?? "-"}
@@ -575,7 +633,7 @@ export default function MyPropertiesPage() {
 
                   </div>
 
-                  <div>
+                  <div className="text-center">
 
                     <p className="text-lg font-bold text-[#1E3A5F]">
                       {property.bathrooms ?? "-"}
@@ -587,7 +645,7 @@ export default function MyPropertiesPage() {
 
                   </div>
 
-                  <div>
+                  <div className="text-center">
 
                     <p className="text-lg font-bold text-[#1E3A5F]">
                       {property.area ?? "-"}
@@ -601,12 +659,13 @@ export default function MyPropertiesPage() {
 
                 </div>
 
-                <div className="flex gap-3 pt-2">
+                {/* Buttons */}
+
+                <div className="grid grid-cols-2 gap-3">
 
                   <Link
                     href={`/properties/${property._id}`}
                     className="
-                      flex-1
                       rounded-xl
                       border
                       border-slate-200
@@ -625,7 +684,6 @@ export default function MyPropertiesPage() {
                       handleDelete(property._id)
                     }
                     className="
-                      flex-1
                       rounded-xl
                       bg-red-500
                       py-3
@@ -642,7 +700,7 @@ export default function MyPropertiesPage() {
 
               </div>
 
-            </div>
+            </article>
 
           ))
 
@@ -653,5 +711,4 @@ export default function MyPropertiesPage() {
     </div>
 
   );
-
 }
